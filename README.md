@@ -1,5 +1,5 @@
 # igame-led 安装指南
-##注意：纯AI生成，没有人工痕迹
+## 注意：纯AI生成，没有人工痕迹
 
 面向第三方用户的完整安装/使用说明。项目原理和协议细节见 [`docs/ANALYSIS.md`](docs/ANALYSIS.md)。
 
