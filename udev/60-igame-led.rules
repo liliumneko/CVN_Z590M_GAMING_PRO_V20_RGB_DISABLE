@@ -1,0 +1,10 @@
+# Give the 'i2c' group access to all i2c adapters (used for the GPU controller).
+KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+
+# Colorful / iGame HID LED controllers (vendor id 2f4c): keyboard/01, vendor/FF00, LED/FF01
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2f4c", GROUP="i2c", MODE="0660"
+
+# Turn the motherboard lighting off as soon as the LED controller (usage page
+# FF01) appears.  igame-led only writes to the FF01 interface, so the rule is
+# harmless when the other interfaces are added.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="2f4c", ACTION=="add", RUN+="/usr/bin/igame-led mb off --yes"

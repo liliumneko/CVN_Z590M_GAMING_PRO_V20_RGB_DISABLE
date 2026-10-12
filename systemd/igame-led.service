@@ -1,0 +1,12 @@
+[Unit]
+Description=Turn off Colorful / iGame motherboard lighting
+Documentation=file:/usr/share/doc/igame-led/README.md
+After=multi-user.target systemd-udev-settle.service
+
+[Service]
+Type=oneshot
+ExecStart=-/usr/bin/igame-led mb off --yes
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

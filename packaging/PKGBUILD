@@ -1,0 +1,26 @@
+# Maintainer: <you>
+# PKGBUILD for a local build: put this file in the project root and run
+#   makepkg -si
+pkgname=igame-led
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Turn off Colorful / iGame motherboard RGB lighting on Linux (USB HID)"
+arch=('any')
+url=""
+license=('MIT')
+depends=()
+makedepends=('gcc' 'make')
+source=()
+options=('!strip')
+
+build() {
+	cd "$startdir"
+	make clean igame-led CFLAGS="-O2 -Wall -Wextra -std=c11"
+}
+
+package() {
+	cd "$startdir"
+	make DESTDIR="$pkgdir" PREFIX=/usr install
+	install -Dm644 README.md "$pkgdir/usr/share/doc/igame-led/README.md"
+	install -Dm644 docs/ANALYSIS.md "$pkgdir/usr/share/doc/igame-led/ANALYSIS.md"
+}
